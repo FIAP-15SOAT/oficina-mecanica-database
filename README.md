@@ -141,8 +141,9 @@ Após o provisionamento, o Terraform exporta as seguintes informações:
 
 | Output | Descrição | Exemplo |
 |---|---|---|
-| `db_endpoint` | Host e porta para conexão | `rds-oficina-mecanica.xxxx.us-east-1.rds.amazonaws.com:5432` |
-| `db_address` | Endereço DNS do host | `rds-oficina-mecanica.xxxx.us-east-1.rds.amazonaws.com` |
+| `db_host` | Endereço DNS do host (utilizado em `DB_HOST`) | `rds-oficina-mecanica.xxxx.us-east-1.rds.amazonaws.com` |
+| `db_endpoint` | Host e porta combinados para conexão | `rds-oficina-mecanica.xxxx.us-east-1.rds.amazonaws.com:5432` |
+| `db_address` | Endereço DNS do host (alias para `db_host`) | `rds-oficina-mecanica.xxxx.us-east-1.rds.amazonaws.com` |
 | `db_port` | Porta do PostgreSQL | `5432` |
 | `db_name` | Nome inicial do banco | `techchallenge` |
 | `db_security_group_id` | ID do Security Group do RDS | `sg-0123456789abcdef0` |
