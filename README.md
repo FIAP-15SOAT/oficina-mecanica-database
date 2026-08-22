@@ -7,7 +7,7 @@
 ![Terraform](https://img.shields.io/badge/Terraform-%3E%3D1.11.0-844FBA?logo=terraform&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?logo=amazon-aws&logoColor=white)
 ![Amazon RDS](https://img.shields.io/badge/AWS-RDS_PostgreSQL-527FFF?logo=amazon-rds&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16.9--R2-4169E1?logo=postgresql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16.9-4169E1?logo=postgresql&logoColor=white)
 
 </div>
 
@@ -20,7 +20,7 @@ Faz parte do ecossistema de microsserviços e infraestrutura da pós-graduação
 ### 🏗️ Recursos Provisionados
 
 1. **Amazon RDS PostgreSQL (`rds.tf`)**:
-   - Instância gerenciada do PostgreSQL na versão **16.9-R2** (Single-AZ para otimização de custos de laboratório).
+   - Instância gerenciada do PostgreSQL na versão **16.9** (Single-AZ para otimização de custos de laboratório).
    - Tipo de instância: `db.t4g.micro` (ou `db.t3.micro`).
    - Armazenamento: `20 GiB` GP3 com criptografia em repouso ativada (`storage_encrypted = true`).
    - Acesso estritamente privado (`publicly_accessible = false`), alocado nas subnets privadas da VPC.
