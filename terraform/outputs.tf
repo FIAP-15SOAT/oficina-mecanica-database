@@ -9,12 +9,17 @@ output "db_instance_arn" {
 }
 
 output "db_endpoint" {
-  description = "RDS connection endpoint"
+  description = "RDS connection endpoint with port"
   value       = aws_db_instance.rds_postgres.endpoint
 }
 
+output "db_host" {
+  description = "RDS hostname address (matches DB_HOST variable)"
+  value       = aws_db_instance.rds_postgres.address
+}
+
 output "db_address" {
-  description = "RDS hostname address"
+  description = "RDS hostname address (alias for db_host)"
   value       = aws_db_instance.rds_postgres.address
 }
 
