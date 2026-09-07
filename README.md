@@ -93,13 +93,14 @@ Para a execução automatizada dos pipelines de CI e CD, configure os seguintes 
 | `AWS_ACCESS_KEY_ID` | Access Key do AWS Academy / Learner Lab |
 | `AWS_SECRET_ACCESS_KEY` | Secret Access Key do AWS Academy |
 | `AWS_SESSION_TOKEN` | Token temporário de sessão do AWS Academy |
-| `OPEN_PR_TOKEN` | Personal Access Token (PAT) com escopo `repo` para abertura automática de PRs no CI |
+| `BOT_PRIVATE_KEY` | Chave privada (`.pem`) do GitHub App para autenticação de automação de PRs |
 | `TF_VAR_db_password` *(ou `DB_PASSWORD`)* | Senha mestra do banco PostgreSQL (ex: `OficinaDb#2026!Prod`) |
 
 ### Variáveis do GitHub (`Settings > Secrets and variables > Actions > Variables`)
 
 | Variável | Valor Padrão | Descrição |
 |---|---|---|
+| `BOT_APP_ID` | — | ID numérico do GitHub App configurado na Organização |
 | `ENABLE_DEPLOY` | `true` | Habilita a execução do job `terraform apply` no workflow de CD |
 
 ---
