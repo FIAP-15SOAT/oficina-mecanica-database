@@ -154,3 +154,4 @@ Após o provisionamento, o Terraform exporta as seguintes informações:
 ## 📐 Decisões Arquiteturais
 
 - [ADR 0001 — Banco de dados relacional como serviço gerenciado (Amazon RDS)](docs/adr/0001-banco-gerenciado-amazon-rds.md)
+- [ADR 0002 — Credencial do banco via variável Terraform sensível, sem AWS Secrets Manager](docs/adr/0002-credencial-via-variavel-terraform-sensivel.md)
