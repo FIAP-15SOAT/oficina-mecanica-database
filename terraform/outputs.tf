@@ -37,3 +37,8 @@ output "db_security_group_id" {
   description = "Security group ID of the RDS instance"
   value       = aws_security_group.secgrp_rds.id
 }
+
+output "db_credentials_secret_arn" {
+  description = "ARN do segredo com a credencial do banco, na forma usuario e senha"
+  value       = aws_secretsmanager_secret.db_credentials.arn
+}
