@@ -148,3 +148,10 @@ Após o provisionamento, o Terraform exporta as seguintes informações:
 | `db_port` | Porta do PostgreSQL | `5432` |
 | `db_name` | Nome inicial do banco | `techchallenge` |
 | `db_security_group_id` | ID do Security Group do RDS | `sg-0123456789abcdef0` |
+
+---
+
+## 📐 Decisões Arquiteturais
+
+- [ADR 0001 — Banco de dados relacional como serviço gerenciado (Amazon RDS)](docs/adr/0001-banco-gerenciado-amazon-rds.md)
+- [ADR 0002 — Credencial do banco via variável Terraform sensível, sem AWS Secrets Manager](docs/adr/0002-credencial-via-variavel-terraform-sensivel.md)
