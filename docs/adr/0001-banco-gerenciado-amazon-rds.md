@@ -6,9 +6,9 @@ Aceito — 2026-09-07
 
 ## Contexto
 
-A escolha da **tecnologia** de banco de dados (PostgreSQL, e por quê) já está registrada no repositório da aplicação — ver [ADR 0001 do `oficina-mecanica-app`](https://github.com/FIAP-15SOAT/oficina-mecanica-app/blob/master/docs/adr/0001-uso-do-postgresql-como-banco-de-dados.md). Esta ADR trata de uma decisão diferente e específica deste repositório: **onde e como esse PostgreSQL roda** — como um serviço gerenciado pela nuvem, ou auto-hospedado (dentro do cluster Kubernetes ou numa instância EC2 dedicada).
+A escolha da **tecnologia** de banco de dados (PostgreSQL, e por quê) já está registrada no repositório da aplicação — ver [ADR 0001 do `oficina-mecanica-api`](https://github.com/FIAP-15SOAT/oficina-mecanica-api/blob/main/docs/adr/0001-uso-do-postgresql-como-banco-de-dados.md). Esta ADR trata de uma decisão diferente e específica deste repositório: **onde e como esse PostgreSQL roda** — como um serviço gerenciado pela nuvem, ou auto-hospedado (dentro do cluster Kubernetes ou numa instância EC2 dedicada).
 
-O ambiente é o `prod-simulated` em conta AWS Academy (ver [ADR 0005 do `oficina-mecanica-app`](https://github.com/FIAP-15SOAT/oficina-mecanica-app/blob/master/docs/adr/0005-escolha-de-nuvem-aws.md)), com orçamento de crédito de laboratório limitado. O projeto **já tentou** hospedar o PostgreSQL dentro do cluster EKS, numa fase anterior — um `StatefulSet` com volume `emptyDir`, que se mostrou inviável por o EBS CSI Driver não ter credenciais IAM disponíveis no ambiente Academy (a conta lab bloqueia IAM/IRSA), resultando em armazenamento efêmero sem persistência real entre reagendamentos de pod.
+O ambiente é o `prod-simulated` em conta AWS Academy (ver [ADR 0005 do `oficina-mecanica-api`](https://github.com/FIAP-15SOAT/oficina-mecanica-api/blob/main/docs/adr/0005-escolha-de-nuvem-aws.md)), com orçamento de crédito de laboratório limitado. O projeto **já tentou** hospedar o PostgreSQL dentro do cluster EKS, numa fase anterior — um `StatefulSet` com volume `emptyDir`, que se mostrou inviável por o EBS CSI Driver não ter credenciais IAM disponíveis no ambiente Academy (a conta lab bloqueia IAM/IRSA), resultando em armazenamento efêmero sem persistência real entre reagendamentos de pod.
 
 ## Decisão
 
@@ -31,7 +31,7 @@ Evitaria a limitação do EBS CSI Driver dentro do cluster, já que um volume EB
 
 ### RDS Multi-AZ
 
-Daria alta disponibilidade real, com failover automático para uma réplica em standby noutra zona de disponibilidade. Descartado nesta entrega por custo: Multi-AZ duplica o custo da instância RDS, consumindo crédito de laboratório que já é escasso e majoritariamente consumido pelo control plane do EKS e pelo NAT Gateway (ver ADR 0005 do `oficina-mecanica-app`). Aceito como risco residual: uma indisponibilidade do RDS hoje é uma indisponibilidade de todo o sistema, sem failover automático.
+Daria alta disponibilidade real, com failover automático para uma réplica em standby noutra zona de disponibilidade. Descartado nesta entrega por custo: Multi-AZ duplica o custo da instância RDS, consumindo crédito de laboratório que já é escasso e majoritariamente consumido pelo control plane do EKS e pelo NAT Gateway (ver ADR 0005 do `oficina-mecanica-api`). Aceito como risco residual: uma indisponibilidade do RDS hoje é uma indisponibilidade de todo o sistema, sem failover automático.
 
 ### Aurora PostgreSQL (Serverless ou provisionado)
 
@@ -60,7 +60,7 @@ Ofereceria melhor elasticidade (Aurora Serverless v2 escala capacidade automatic
 
 ## Referências
 
-- [`oficina-mecanica-app` › ADR 0001 — Uso do PostgreSQL como banco de dados relacional](https://github.com/FIAP-15SOAT/oficina-mecanica-app/blob/master/docs/adr/0001-uso-do-postgresql-como-banco-de-dados.md)
-- [`oficina-mecanica-app` › ADR 0005 — Escolha de nuvem](https://github.com/FIAP-15SOAT/oficina-mecanica-app/blob/master/docs/adr/0005-escolha-de-nuvem-aws.md)
-- [`oficina-mecanica-app` › docs/infra/kubernetes.md — Armazenamento do PostgreSQL (histórico da fase anterior)](https://github.com/FIAP-15SOAT/oficina-mecanica-app/blob/master/docs/infra/kubernetes.md#armazenamento-do-postgresql-ausência-do-ebs-csi-driver-e-uso-de-emptydir)
+- [`oficina-mecanica-api` › ADR 0001 — Uso do PostgreSQL como banco de dados relacional](https://github.com/FIAP-15SOAT/oficina-mecanica-api/blob/main/docs/adr/0001-uso-do-postgresql-como-banco-de-dados.md)
+- [`oficina-mecanica-api` › ADR 0005 — Escolha de nuvem](https://github.com/FIAP-15SOAT/oficina-mecanica-api/blob/main/docs/adr/0005-escolha-de-nuvem-aws.md)
+- [`oficina-mecanica-api` › docs/infra/kubernetes.md — Banco de Dados Relacional (Amazon RDS)](https://github.com/FIAP-15SOAT/oficina-mecanica-api/blob/main/docs/infra/kubernetes.md#banco-de-dados-relacional-amazon-rds)
 - `terraform/rds.tf`, `terraform/variables.tf` — configuração corrente da instância.
